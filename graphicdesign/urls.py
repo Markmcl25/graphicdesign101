@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.http import HttpResponse
+
+# Temporary home view function
+def home(request):
+    return HttpResponse("Welcome to Graphic Design 101!")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts', include('allauth.urls')),
-
+    path('accounts/', include('allauth.urls')),  # This handles /accounts/login/
+    path('', home, name='home'),  # Root URL now correctly placed last
 ]
