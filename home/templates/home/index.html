@@ -2,5 +2,62 @@
 {% load static %}
 
 {% block content %}
-    <h1 class="display-4 text-success">It works!</h1>
+<div class="container mt-5">
+    <!-- Welcome Section -->
+    <div class="row">
+        <div class="col text-center">
+            <h1>Welcome to Graphic Design 101</h1>
+            <p>Your one-stop shop for professional graphic design services.</p>
+            {% if user.is_authenticated %}
+                <p>Welcome back, {{ user.username }}!</p>
+                <a href="{% url 'account_logout' %}" class="btn btn-danger">Logout</a>
+            {% else %}
+                <a href="{% url 'account_login' %}" class="btn btn-primary">Login</a>
+                <a href="{% url 'account_signup' %}" class="btn btn-secondary">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div class="row mt-5">
+        <div class="col text-center">
+            <h2>Our Services</h2>
+            <p>We offer a wide range of graphic design services tailored to meet your needs:</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="{% static 'images/icon-design.jpg' %}" alt="Icon Design" class="img-fluid rounded">
+            <h3>Icon Design</h3>
+            <p>Custom icons that bring your brand to life.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="{% static 'images/logo-design.jpg' %}" alt="Logo Design" class="img-fluid rounded">
+            <h3>Logo Design</h3>
+            <p>Memorable logos that make an impression.</p>
+        </div>
+        <div class="col-md-4 text-center">
+            <img src="{% static 'images/poster-design.jpg' %}" alt="Poster Design" class="img-fluid rounded">
+            <h3>Poster Design</h3>
+            <p>Eye-catching posters for all occasions.</p>
+        </div>
+    </div>
+
+    <!-- Portfolio Section -->
+    <div class="row mt-5">
+        <div class="col text-center">
+            <h2>Portfolio</h2>
+            <p>Take a look at some of our previous projects:</p>
+        </div>
+    </div>
+    <div class="row">
+        {% for project in portfolio_projects %}
+        <div class="col-md-4 text-center">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}" class="img-fluid rounded">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}
