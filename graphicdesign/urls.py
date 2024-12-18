@@ -24,5 +24,5 @@ def home(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),  # This handles /accounts/login/
-    path('', home, name='home'),  # Root URL now correctly placed last
+    path('', include('home.urls')),  
 ]
