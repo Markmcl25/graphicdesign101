@@ -1,0 +1,130 @@
+/* General Styles */
+html {
+    height: 100%;
+}
+
+body {
+    background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: calc(100vh - 164px); /* Adjust height to leave space for header/footer */
+    color: #555;
+    font-family: 'Lato', sans-serif; /* Add a fallback font */
+    margin: 0;
+}
+
+/* Icon Styling (Inspired by Bulma) */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+/* Logo and Branding */
+.logo-font {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.main-logo-link {
+    width: fit-content;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Buttons */
+.shop-now-button {
+    background: black;
+    color: white;
+    min-width: 260px;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+/* Navbar */
+.navbar {
+    padding: 0.75rem 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.jumbotron {
+    background: linear-gradient(to right, #007bff, #6c757d); /* Example gradient */
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+
+/* -------------------------------- Media Queries */
+
+/* Larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+/* Fixed top navbar for medium screens and up */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px; /* Adds space for fixed navbar */
+    }
+}
+
+/* Small screen adjustments */
+@media (max-width: 768px) {
+    .shop-now-button {
+        min-width: 200px;
+        padding: 0.5rem 1rem;
+    }
+}

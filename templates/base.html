@@ -15,7 +15,12 @@
     {% endblock %}
 
     {% block extra_css %}
+        <!-- Your custom CSS -->
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
+
+    <!-- Lato Font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
     <title>GraphicDesign101 | {% block extra_title %}{% endblock %}</title>
   </head>
@@ -70,6 +75,14 @@
     <!-- Main Content -->
     <div class="container mt-5">
       {% block content %}
+        <!-- Portfolio Section with Jumbotron -->
+        <div class="jumbotron">
+          <h1 class="display-4">Our Portfolio</h1>
+          <p class="lead">This is a collection of our finest works for clients worldwide.</p>
+          <hr class="my-4">
+          <p>Explore our portfolio to see innovative designs, from logos and posters to complete branding solutions.</p>
+          <a class="btn btn-primary btn-lg" href="{% url 'portfolio' %}" role="button">View Portfolio</a>
+        </div>
       {% endblock %}
     </div>
 
