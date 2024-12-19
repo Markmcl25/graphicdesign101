@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
+    background: url('/media/pexels-cottonbro-5082573.jpg') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px); /* Adjust height to leave space for header/footer */
     color: #555;
@@ -96,6 +96,16 @@ body {
     transition: transform 0.2s ease-in-out;
 }
 
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for captions */
+    padding: 1rem; /* Add padding around the text */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.carousel-item img {
+    max-height: 500px; /* Limit the image height */
+    object-fit: cover; /* Ensure the image scales properly */
+}
 
 /* -------------------------------- Media Queries */
 
