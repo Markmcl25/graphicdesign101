@@ -6,3 +6,6 @@ def index(request):
     """ A view to return index page """
 
     return render(request, 'home/index.html')
+
+def home_view(request):
+    return render(request, 'home/home.html')    
