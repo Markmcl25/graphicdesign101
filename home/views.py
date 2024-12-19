@@ -12,4 +12,13 @@ def home_view(request):
 
 def shopping_bag(request):
     """A view to return the shopping bag page"""
-    return render(request, 'shopping_bag.html')      
+    return render(request, 'shopping_bag.html')     
+
+def portfolio(request):
+    """A view to display the portfolio page."""
+    portfolio_projects = [
+        {'title': 'Project 1', 'description': 'Description of Project 1', 'image': '/path/to/image1.jpg'},
+        {'title': 'Project 2', 'description': 'Description of Project 2', 'image': '/path/to/image2.jpg'},
+        {'title': 'Project 3', 'description': 'Description of Project 3', 'image': '/path/to/image3.jpg'},
+    ]
+    return render(request, 'portfolio.html', {'portfolio_projects': portfolio_projects})     

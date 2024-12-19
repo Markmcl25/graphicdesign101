@@ -43,13 +43,16 @@
         </div>
     </div>
 
-    <!-- Portfolio Section -->
-    <div class="row mt-5">
-        <div class="col text-center">
-            <h2>Portfolio</h2>
-            <p>Take a look at some of our previous projects:</p>
-        </div>
+    <!-- Portfolio Section with Jumbotron -->
+    <div class="jumbotron mt-5">
+        <h1 class="display-4">Portfolio</h1>
+        <p class="lead">Take a look at some of our finest work, crafted with passion and precision.</p>
+        <hr class="my-4">
+        <p>Our portfolio showcases innovative designs from logos to posters, bringing ideas to life.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'portfolio' %}" role="button">View Full Portfolio</a>
     </div>
+
+    <!-- Portfolio Projects -->
     <div class="row">
         {% for project in portfolio_projects %}
         <div class="col-md-4 text-center">
