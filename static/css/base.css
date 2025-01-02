@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    background: url('/media/pexels-cottonbro-5082573.jpg') no-repeat center center fixed;
+    background: url('{% static "images/pexels-cottonbro-5082573.jpg" %}') no-repeat center center fixed;
     background-size: cover;
     height: calc(100vh - 164px); /* Adjust height to leave space for header/footer */
     color: #555;
@@ -86,14 +86,21 @@ body {
     color: white;
 }
 
-.jumbotron {
-    background: linear-gradient(to right, #007bff, #6c757d); /* Example gradient */
-    color: white;
+/* Jumbotron and Carousel Height Adjustments */
+.jumbotron,
+.carousel {
+    height: calc(100vh - 56px); /* Full viewport height minus navbar (56px) */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    align-items: center; /* Horizontally center content */
+    text-align: center;
+    margin-bottom: 1rem; /* Add space below */
 }
 
-.btn-primary:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease-in-out;
+.carousel-item img {
+    height: 100%; /* Fill carousel height */
+    object-fit: cover; /* Ensure the image scales properly */
 }
 
 .carousel-caption {
@@ -102,9 +109,15 @@ body {
     border-radius: 10px; /* Rounded corners */
 }
 
-.carousel-item img {
-    max-height: 500px; /* Limit the image height */
-    object-fit: cover; /* Ensure the image scales properly */
+/* Jumbotron Styling */
+.jumbotron {
+    background: linear-gradient(to right, #007bff, #6c757d); /* Example gradient */
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
 }
 
 /* -------------------------------- Media Queries */
