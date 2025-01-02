@@ -152,4 +152,11 @@ STATIC_URL = '/static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
+
+# Media files (uploads)
+
+MEDIA_URL = '/media/'  # URL for accessing media files
+
+MEDIA_ROOT = BASE_DIR / 'static/media'  # Directory where media files are stored
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
