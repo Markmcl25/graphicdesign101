@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Our Portfolio</h1>
+    <p class="text-center">Explore our creative work, crafted with precision and passion.</p>
+
+    <!-- Portfolio Grid -->
+    <div class="row">
+        {% for project in portfolio_projects %}
+        <div class="col-md-4 col-sm-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <img src="{% static project.image %}" class="card-img-top" alt="{{ project.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.description }}</p>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{{ project.url }}" class="btn btn-primary btn-sm">View Details</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>No portfolio projects available at this time.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
