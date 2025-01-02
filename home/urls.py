@@ -13,6 +13,6 @@ urlpatterns = [
     path('portfolio/', views.portfolio, name='portfolio'),  # Portfolio page
     path('accounts/', include('allauth.urls')),  # Allauth routes for authentication
 ]
-4
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
