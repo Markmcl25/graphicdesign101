@@ -2,9 +2,7 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <!-- Welcome Section -->
-<div class="jumbotron mt-5">
+<div class="jumbotron mt-5 welcome-section">
   <h1 class="display-4">Welcome to Graphic Design 101</h1>
   <p class="lead">Your one-stop shop for professional graphic design services.</p>
   {% if user.is_authenticated %}
@@ -15,7 +13,6 @@
       <a href="{% url 'account_signup' %}" class="btn btn-secondary btn-lg">Sign Up</a>
   {% endif %}
 </div>
-
 
     <!-- Services Section as Carousel -->
     <div id="servicesCarousel" class="carousel slide mt-5" data-ride="carousel">

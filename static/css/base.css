@@ -3,6 +3,22 @@ html {
     height: 100%;
 }
 
+/* Welcome Section */
+.welcome-section {
+    margin-top: 4rem; /* Reduce margin for better spacing from navbar */
+    padding: 3rem; /* Increase padding inside the jumbotron */
+    text-align: left; /* Align text to the left */
+}
+
+.welcome-section h1,
+.welcome-section p {
+    margin-bottom: 1rem; /* Consistent margins for headings and paragraphs */
+}
+
+.welcome-section .btn-lg {
+    margin-top: 1rem; /* Add margin to buttons for better spacing */
+}
+
 body {
     background: url('{% static "images/pexels-cottonbro-5082573.jpg" %}') no-repeat center center fixed;
     background-size: cover;
@@ -75,7 +91,10 @@ body {
 
 /* Navbar */
 .navbar {
-    padding: 1rem 1rem; /* Add more padding for consistency */
+    background-color: #343a40; /* Dark background for contrast */
+    padding: 1.5rem 1rem; /* Increased padding for taller navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow for floating effect */
+    z-index: 1030; /* Ensure the navbar stays on top */
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -87,21 +106,17 @@ body {
     color: white;
 }
 
-/* Jumbotron and Carousel Height Adjustments */
-.jumbotron,
+/* Carousel */
 .carousel {
-    height: calc(100vh - 72px); /* Adjusted to subtract navbar height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertically center content */
-    align-items: center; /* Horizontally center content */
-    text-align: center;
-    margin-bottom: 1rem; /* Add space below */
+    max-height: 500px; /* Set a consistent max height for carousel */
+    overflow: hidden; /* Prevent content overflow */
 }
 
 .carousel-item img {
-    height: 100%; /* Fill carousel height */
-    object-fit: cover; /* Ensure the image scales properly */
+    width: 100%;
+    max-height: 500px; /* Ensure images stay within max height */
+    object-fit: cover; /* Crop the image to fit the container */
+    object-position: center; /* Center the image */
 }
 
 .carousel-caption {
@@ -114,6 +129,16 @@ body {
 .jumbotron {
     background: linear-gradient(to right, #007bff, #6c757d); /* Example gradient */
     color: white;
+    padding: 3rem 2rem; /* Add padding for larger screens */
+}
+
+.jumbotron h1,
+.jumbotron p {
+    margin-bottom: 1.5rem; /* Increased margin for spacing */
+}
+
+.jumbotron .btn-lg {
+    margin-top: 1rem;
 }
 
 .btn-primary:hover {
@@ -150,6 +175,6 @@ body {
 
     .jumbotron,
     .carousel {
-        height: calc(100vh - 64px); /* Subtract the mobile navbar height */
+        max-height: 350px; /* Smaller max height for mobile */
     }
 }

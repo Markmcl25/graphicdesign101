@@ -22,7 +22,7 @@ def home(request):
     return HttpResponse("Welcome to Graphic Design 101!")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('allauth.urls')),  # This handles /accounts/login/
-    path('', include('home.urls')),  
+    path('accounts/', include('allauth.urls')),  # Handles /accounts/login/
+    path('', include('home.urls')),  # Include home app routes
 ]
+
