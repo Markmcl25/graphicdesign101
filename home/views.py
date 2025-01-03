@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from .models import PortfolioProject
 
 # View for the homepage and /home/
 def index(request):
