@@ -4,19 +4,18 @@
 {% block content %}
 <div class="container mt-5">
     <!-- Welcome Section -->
-    <div class="row">
-        <div class="col text-center">
-            <h1>Welcome to Graphic Design 101</h1>
-            <p>Your one-stop shop for professional graphic design services.</p>
-            {% if user.is_authenticated %}
-                <p>Welcome back, {{ user.username }}!</p>
-                <a href="{% url 'account_logout' %}" class="btn btn-danger">Logout</a>
-            {% else %}
-                <a href="{% url 'account_login' %}" class="btn btn-primary">Login</a>
-                <a href="{% url 'account_signup' %}" class="btn btn-secondary">Sign Up</a>
-            {% endif %}
-        </div>
-    </div>
+<div class="jumbotron mt-5">
+  <h1 class="display-4">Welcome to Graphic Design 101</h1>
+  <p class="lead">Your one-stop shop for professional graphic design services.</p>
+  {% if user.is_authenticated %}
+      <p>Welcome back, {{ user.username }}!</p>
+      <a href="{% url 'account_logout' %}" class="btn btn-danger btn-lg">Logout</a>
+  {% else %}
+      <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg">Login</a>
+      <a href="{% url 'account_signup' %}" class="btn btn-secondary btn-lg">Sign Up</a>
+  {% endif %}
+</div>
+
 
     <!-- Services Section as Carousel -->
     <div id="servicesCarousel" class="carousel slide mt-5" data-ride="carousel">

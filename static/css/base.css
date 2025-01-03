@@ -10,6 +10,7 @@ body {
     color: #555;
     font-family: 'Lato', sans-serif; /* Add a fallback font */
     margin: 0;
+    padding-top: 72px; /* Updated to match the navbar height */
 }
 
 /* Icon Styling (Inspired by Bulma) */
@@ -74,7 +75,7 @@ body {
 
 /* Navbar */
 .navbar {
-    padding: 0.75rem 1rem;
+    padding: 1rem 1rem; /* Add more padding for consistency */
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -89,7 +90,7 @@ body {
 /* Jumbotron and Carousel Height Adjustments */
 .jumbotron,
 .carousel {
-    height: calc(100vh - 56px); /* Full viewport height minus navbar (56px) */
+    height: calc(100vh - 72px); /* Adjusted to subtract navbar height */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Vertically center content */
@@ -131,23 +132,24 @@ body {
 
 /* Fixed top navbar for medium screens and up */
 @media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
-
     .header-container {
-        padding-top: 164px; /* Adds space for fixed navbar */
+        padding-top: 120px; /* Adds more padding for desktop navbar */
     }
 }
 
 /* Small screen adjustments */
 @media (max-width: 768px) {
+    body {
+        padding-top: 64px; /* Slightly smaller padding for mobile */
+    }
+
     .shop-now-button {
         min-width: 200px;
         padding: 0.5rem 1rem;
+    }
+
+    .jumbotron,
+    .carousel {
+        height: calc(100vh - 64px); /* Subtract the mobile navbar height */
     }
 }
