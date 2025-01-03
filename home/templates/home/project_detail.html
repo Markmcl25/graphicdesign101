@@ -28,6 +28,15 @@
             <p><strong>Tools Used:</strong> {{ project.tools }}</p>
             {% endif %}
 
+            <!-- Download link -->
+            {% if project.file %}
+            <p>
+                <a href="{{ project.file.url }}" class="btn btn-success mt-3" download>
+                    <i class="fas fa-download"></i> Download Project File
+                </a>
+            </p>
+            {% endif %}
+
             <a href="{% url 'portfolio' %}" class="btn btn-secondary mt-3">Back to Portfolio</a>
         </div>
     </div>
