@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import PortfolioProject
 
@@ -20,30 +20,11 @@ def example_view(request):
 # View for the portfolio page
 def portfolio(request):
     """ A view to display the portfolio page """
-    portfolio_projects = [
-        {'title': 'Project 1', 'description': 'Description of Project 1', 'image': 'images/project1.jpg'},
-        {'title': 'Project 2', 'description': 'Description of Project 2', 'image': 'images/project2.jpg'},
-        {'title': 'Project 3', 'description': 'Description of Project 3', 'image': 'images/project3.jpg'},
-    ]
+    portfolio_projects = PortfolioProject.objects.all()  # Fetch from the database
     return render(request, 'home/portfolio.html', {'portfolio_projects': portfolio_projects})
 
-def portfolio(request):
-    """ A view to display the portfolio page """
-    portfolio_projects = [
-        {'id': 1, 'title': 'Project 1', 'description': 'Innovative logo design', 'image': '/static/images/project1.jpg'},
-        {'id': 2, 'title': 'Project 2', 'description': 'Creative branding solutions', 'image': '/static/images/project2.jpg'},
-        {'id': 3, 'title': 'Project 3', 'description': 'Stunning poster designs', 'image': '/static/images/project3.jpg'},
-    ]
-    return render(request, 'home/portfolio.html', {'portfolio_projects': portfolio_projects})
-
+# View for a specific project detail
 def project_detail(request, project_id):
     """ A view to display details of a specific project """
-    projects = {
-        1: {'title': 'Project 1', 'description': 'Innovative logo design', 'image': '/static/images/project1.jpg'},
-        2: {'title': 'Project 2', 'description': 'Creative branding solutions', 'image': '/static/images/project2.jpg'},
-        3: {'title': 'Project 3', 'description': 'Stunning poster designs', 'image': '/static/images/project3.jpg'},
-    }
-    project = projects.get(project_id, None)
-    if not project:
-        return render(request, '404.html')  # Handle project not found
+    project = get_object_or_404(PortfolioProject, id=project_id)
     return render(request, 'home/project_detail.html', {'project': project})
