@@ -21,6 +21,7 @@
 
     <!-- Lato Font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <title>GraphicDesign101 | {% block extra_title %}{% endblock %}</title>
   </head>
@@ -90,27 +91,26 @@
     </div>
 
     <!-- Footer -->
-    <footer class="text-center py-3 bg-dark text-white mt-5">
-      <p>© 2025 GraphicDesign101. All rights reserved.</p>
-      <div class="mt-3">
-          <a href="https://www.facebook.com/yourpage" target="_blank" class="text-white mr-3">
-              <i class="fab fa-facebook fa-lg"></i>
+    <footer class="bg-dark text-white py-4 mt-5">
+      <div class="container text-center">
+        <p>&copy; {{ current_year }} GraphicDesign101. All rights reserved.</p>
+        <div class="social-links mt-2">
+          <a href="https://www.facebook.com" class="text-white mx-2" target="_blank">
+            <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="https://twitter.com/yourhandle" target="_blank" class="text-white mr-3">
-              <i class="fab fa-twitter fa-lg"></i>
+          <a href="https://www.instagram.com" class="text-white mx-2" target="_blank">
+            <i class="fab fa-instagram"></i>
           </a>
-          <a href="https://www.instagram.com/yourpage" target="_blank" class="text-white mr-3">
-              <i class="fab fa-instagram fa-lg"></i>
+          <a href="https://twitter.com" class="text-white mx-2" target="_blank">
+            <i class="fab fa-twitter"></i>
           </a>
-          <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-white">
-              <i class="fab fa-linkedin fa-lg"></i>
+          <a href="https://www.linkedin.com" class="text-white mx-2" target="_blank">
+            <i class="fab fa-linkedin-in"></i>
           </a>
+        </div>
       </div>
-      <p class="mt-2">
-          <a href="{% url 'privacy_policy' %}" class="text-white">Privacy Policy</a> | <a href="{% url 'terms_conditions' %}" class="text-white">Terms & Conditions</a>
-      </p>
-  </footer>
-
+    </footer>
+    
     {% block corejs %}
         <!-- Bootstrap JS and Dependencies -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
