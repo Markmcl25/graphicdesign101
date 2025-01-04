@@ -18,3 +18,15 @@ class PortfolioProject(models.Model):
 
     def __str__(self):
         return self.title
+
+class Inquiry(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    design_file = models.FileField(upload_to='design_uploads/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Inquiry from {self.name} - {self.subject}"
+
