@@ -22,6 +22,9 @@
                 margin-top: 100px; /* Ensure flash messages are below the fixed navbar */
                 z-index: 1050;
             }
+            .content-wrapper {
+                padding-top: 100px; /* Adds space to avoid overlapping with navbar */
+            }
             .fade-out {
                 opacity: 0;
                 transition: opacity 1s ease-in-out;
@@ -91,7 +94,7 @@
       <div class="container mt-5">
       {% block content %}
         <!-- Portfolio Section with Jumbotron -->
-        <div class="jumbotron">
+        <div class="jumbotron welcome-section">
           <h1 class="display-4">Our Portfolio</h1>
           <p class="lead">This is a collection of our finest works for clients worldwide.</p>
           <hr class="my-4">

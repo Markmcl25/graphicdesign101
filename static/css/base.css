@@ -32,7 +32,7 @@ html {
 }
 
 .welcome-section .btn-lg {
-    margin-top: 1rem; /* Add margin to buttons for better spacing */
+    margin-top: 20px; /* Add margin to buttons for better spacing */
 }
 
 .portfolio-wrapper {
@@ -46,7 +46,7 @@ body {
     color: #555;
     font-family: 'Lato', sans-serif; /* Add a fallback font */
     margin: 0;
-    padding-top: 72px; /* Updated to match the navbar height */
+    padding-top: 80px; /* Updated to match the navbar height */
     display: flex;
     flex-direction: column;
 }
