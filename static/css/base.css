@@ -42,7 +42,7 @@ html {
 body {
     background: url('{% static "images/pexels-cottonbro-5082573.jpg" %}') no-repeat center center fixed;
     background-size: cover;
-    height: calc(100vh - 164px); /* Adjust height to leave space for header/footer */
+    height: 100vh;
     color: #555;
     font-family: 'Lato', sans-serif; /* Add a fallback font */
     margin: 0;
