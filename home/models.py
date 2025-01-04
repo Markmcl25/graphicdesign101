@@ -75,3 +75,14 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return f"{self.quantity} x {self.project.title} (Order #{self.order.id})"
+
+
+class ProjectMessage(models.Model):
+    project = models.ForeignKey(PortfolioProject, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.name} for {self.project.title}"        
