@@ -3,6 +3,11 @@ html {
     height: 100%;
 }
 
+.alert-container {
+    margin-top: 100px; /* Adjust this value to match the height of your navbar */
+    z-index: 1050; /* Ensure the messages stay above other content */
+}
+
 /* Welcome Section */
 .welcome-section {
     margin-top: 4rem; /* Reduce margin for better spacing from navbar */
@@ -19,6 +24,10 @@ html {
     margin-top: 1rem; /* Add margin to buttons for better spacing */
 }
 
+.portfolio-wrapper {
+    margin-top: 120px;  /* Adds space from navbar */
+}
+
 body {
     background: url('{% static "images/pexels-cottonbro-5082573.jpg" %}') no-repeat center center fixed;
     background-size: cover;
@@ -27,6 +36,17 @@ body {
     font-family: 'Lato', sans-serif; /* Add a fallback font */
     margin: 0;
     padding-top: 72px; /* Updated to match the navbar height */
+    display: flex;
+    flex-direction: column;
+}
+
+.container p,
+h1 {
+    margin-bottom: 20px;
+}
+
+.content-wrapper {
+    flex-grow: 1;  /* Pushes the footer down */
 }
 
 /* Icon Styling (Inspired by Bulma) */
@@ -144,6 +164,10 @@ body {
 .btn-primary:hover {
     transform: scale(1.05);
     transition: transform 0.2s ease-in-out;
+}
+
+footer {
+    margin-top: auto;  /* Ensures footer stays at the bottom */
 }
 
 /* -------------------------------- Media Queries */

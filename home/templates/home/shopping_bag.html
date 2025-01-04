@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 shopping-bag-wrapper">
+    <h1 class="text-center mb-4">Your Shopping Bag</h1>
+
+    <!-- If bag is empty -->
+    {% if bag_items|length == 0 %}
+    <div class="alert alert-info text-center">
+        <p>Your shopping bag is currently empty.</p>
+        <a href="{% url 'portfolio' %}" class="btn btn-primary mt-2">Browse Designs</a>
+    </div>
+    {% else %}
+    <!-- Shopping Bag Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Item</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in bag_items %}
+                <tr>
+                    <td>
+                        <img src="{{ item.image.url }}" alt="{{ item.title }}" class="img-thumbnail" width="80">
+                    </td>
+                    <td>
+                        <h5>{{ item.title }}</h5>
+                        <p>{{ item.description|truncatewords:10 }}</p>
+                    </td>
+                    <td>€{{ item.price }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'update_quantity' item.id %}">
+                            {% csrf_token %}
+                            <input type="number" name="quantity" value="{{ item.quantity }}" class="form-control w-25 d-inline" min="1">
+                            <button type="submit" class="btn btn-sm btn-info">Update</button>
+                        </form>
+                    </td>
+                    <td>€{{ item.total_price }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'remove_item' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> Remove
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-right"><strong>Grand Total:</strong></td>
+                    <td colspan="2"><strong>€{{ grand_total }}</strong></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <!-- Checkout Button -->
+    <div class="text-center mt-4">
+        <a href="{% url 'checkout' %}" class="btn btn-success btn-lg">
+            <i class="fas fa-credit-card"></i> Proceed to Checkout
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

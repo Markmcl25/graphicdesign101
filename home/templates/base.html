@@ -17,6 +17,16 @@
     {% block extra_css %}
         <!-- Your custom CSS -->
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <style>
+            .alert-container {
+                margin-top: 100px; /* Ensure flash messages are below the fixed navbar */
+                z-index: 1050;
+            }
+            .fade-out {
+                opacity: 0;
+                transition: opacity 1s ease-in-out;
+            }
+        </style>
     {% endblock %}
 
     <!-- Lato Font from Google Fonts -->
@@ -66,7 +76,7 @@
   
     <!-- Flash Messages -->
     {% if messages %}
-    <div class="container mt-3">
+    <div class="alert-container container mt-3">
       {% for message in messages %}
       <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
         {{ message }}
@@ -77,7 +87,8 @@
     {% endif %}
 
     <!-- Main Content -->
-    <div class="container mt-5">
+    <div class="content-wrapper">
+      <div class="container mt-5">
       {% block content %}
         <!-- Portfolio Section with Jumbotron -->
         <div class="jumbotron">
@@ -118,6 +129,18 @@
     {% endblock %}
 
     {% block extra_js %}
+      <script>
+        // Automatically dismiss alerts after 5 seconds
+        setTimeout(function() {
+          let alerts = document.querySelectorAll('.alert');
+          alerts.forEach(function(alert) {
+            alert.classList.add('fade-out');
+            setTimeout(function() {
+              alert.remove();
+            }, 1000);
+          });
+        }, 5000);  // Dismiss after 5 seconds
+      </script>
     {% endblock %}
   </body>
 </html>
