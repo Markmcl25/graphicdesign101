@@ -1,5 +1,5 @@
 from django import forms
-from .models import Inquiry
+from .models import Inquiry, order
 
 class InquiryForm(forms.ModelForm):
     class Meta:
@@ -12,3 +12,10 @@ class InquiryForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={'placeholder': 'Your Email'}),
             'subject': forms.TextInput(attrs={'placeholder': 'Subject'}),
         }
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['status']  
+
+
