@@ -9,10 +9,9 @@ def index(request):
     """ A view to return the homepage """
     return render(request, 'home/index.html')
 
-# View for the shopping bag page
 def shopping_bag(request):
-    """ A view to return the shopping bag page """
-    return render(request, 'shopping_bag.html')
+    """Render the shopping bag page."""
+    return render(request, 'home/shopping_bag.html')
 
 # Redirect to login page
 def example_view(request):
