@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import PortfolioProject, Order, OrderItem
 from .forms import InquiryForm, OrderForm
+from .forms import ProjectMessageForm
 from django.contrib import messages
 
 
@@ -70,10 +71,20 @@ def portfolio(request):
 
 # View for a specific project detail
 def project_detail(request, project_id):
-    """ A view to display details of a specific project """
+    """ A view to display details of a specific project and handle messages """
     project = get_object_or_404(PortfolioProject, id=project_id)
-    return render(request, 'home/project_detail.html', {'project': project})
-
+    if request.method == 'POST':
+        form = ProjectMessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.project = project  # Link the message to the project
+            message.save()
+            messages.success(request, "Your message has been sent!")
+            return redirect('project_detail', project_id=project.id)
+    else:
+        form = ProjectMessageForm()
+    
+    return render(request, 'home/project_detail.html', {'project': project, 'form': form})
 
 def submit_inquiry(request):
     """ A view to handle inquiries submission """
