@@ -1,5 +1,5 @@
 from django import forms
-from .models import Inquiry, order
+from .models import Inquiry, Order
 
 class InquiryForm(forms.ModelForm):
     class Meta:

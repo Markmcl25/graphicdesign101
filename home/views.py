@@ -1,21 +1,23 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .models import PortfolioProject
+from .models import PortfolioProject, Order, OrderItem
 from .forms import InquiryForm, OrderForm
 from django.contrib import messages
-from .models import Order, OrderItem
-from home.models import PortfolioProject
+
 
 # View for the homepage and /home/
 def index(request):
     """ A view to return the homepage """
     return render(request, 'home/index.html')
 
+
 def shopping_bag(request):
     """Render the shopping bag page."""
     return render(request, 'home/shopping_bag.html')
 
+
 def checkout(request):
+    """ A view to handle the checkout process """
     if request.method == "POST":
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -45,12 +47,19 @@ def checkout(request):
     else:
         form = OrderForm()
 
-    return render(request, 'home/checkout.html', {'form': form})    
+    return render(request, 'home/checkout.html', {'form': form})
+
+
+def checkout_success(request):
+    """ A view to display the checkout success page """
+    return render(request, 'home/checkout_success.html')
+
 
 # Redirect to login page
 def example_view(request):
     """ Redirects to the login page """
     return redirect(reverse('account_login'))
+
 
 # View for the portfolio page
 def portfolio(request):
@@ -58,13 +67,16 @@ def portfolio(request):
     portfolio_projects = PortfolioProject.objects.all()  # Fetch from the database
     return render(request, 'home/portfolio.html', {'portfolio_projects': portfolio_projects})
 
+
 # View for a specific project detail
 def project_detail(request, project_id):
     """ A view to display details of a specific project """
     project = get_object_or_404(PortfolioProject, id=project_id)
     return render(request, 'home/project_detail.html', {'project': project})
 
+
 def submit_inquiry(request):
+    """ A view to handle inquiries submission """
     if request.method == 'POST':
         form = InquiryForm(request.POST, request.FILES)
         if form.is_valid():
@@ -73,5 +85,5 @@ def submit_inquiry(request):
             return redirect('home')  # Redirect to the homepage or thank you page
     else:
         form = InquiryForm()
-    
-    return render(request, 'home/inquiry_form.html', {'form': form})    
+
+    return render(request, 'home/inquiry_form.html', {'form': form})

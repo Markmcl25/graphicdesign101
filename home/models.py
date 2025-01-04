@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class PortfolioProject(models.Model):
     CATEGORIES = [
@@ -14,7 +15,7 @@ class PortfolioProject(models.Model):
     client = models.CharField(max_length=100, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
     tools = models.CharField(max_length=200, blank=True, null=True)
-    file = models.FileField(upload_to='portfolio_files/', blank=True, null=True)  # Add this field for downloadable files
+    file = models.FileField(upload_to='portfolio_files/', blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -38,11 +39,17 @@ class Order(models.Model):
         ('cancelled', 'Cancelled'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Link order to the user
-    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp for when order was created
-    updated_at = models.DateTimeField(auto_now=True)  # Timestamp for when order was last updated
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')  # Order status
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)  # Total price
+    PAYMENT_METHOD_CHOICES = [
+        ('credit_card', 'Credit Card'),
+        ('paypal', 'PayPal'),
+        ('bank_transfer', 'Bank Transfer'),
+    ]
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     name = models.CharField(max_length=200)
     email = models.EmailField()
@@ -54,17 +61,17 @@ class Order(models.Model):
     payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD_CHOICES, default='credit_card')
 
     def __str__(self):
-        return f"Order #{self.id} by {self.user.username}"
+        return f"Order #{self.id} by {self.name} ({self.status})"
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_items')  # Link to the order
-    product = models.ForeignKey(PortfolioProject, on_delete=models.CASCADE)  # The design product being purchased
-    quantity = models.PositiveIntegerField(default=1)  # Quantity of the product
-    price = models.DecimalField(max_digits=10, decimal_places=2)  # Price of the item
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
+    project = models.ForeignKey(PortfolioProject, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def get_total_price(self):
+        """Calculate total price for the item."""
         return self.quantity * self.price
 
     def __str__(self):
-        return f"{self.quantity} x {self.product.title} (Order #{self.order.id})"        
-
+        return f"{self.quantity} x {self.project.title} (Order #{self.order.id})"

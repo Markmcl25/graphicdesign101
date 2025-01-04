@@ -13,6 +13,8 @@ urlpatterns = [
     path('portfolio/', views.portfolio, name='portfolio'),  # Portfolio page
     path('accounts/', include('allauth.urls')),  # Allauth routes for authentication
     path('submit-inquiry/', views.submit_inquiry, name='submit_inquiry'),
+    path('checkout/', views.checkout, name='checkout'),
+    path('checkout-success/', views.checkout_success, name='checkout_success'),
 ]
 
 if settings.DEBUG:
