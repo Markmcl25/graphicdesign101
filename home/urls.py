@@ -12,6 +12,7 @@ urlpatterns = [
     path('portfolio/<int:project_id>/', views.project_detail, name='project_detail'),
     path('portfolio/', views.portfolio, name='portfolio'),  # Portfolio page
     path('accounts/', include('allauth.urls')),  # Allauth routes for authentication
+    path('submit-inquiry/', views.submit_inquiry, name='submit_inquiry'),
 ]
 
 if settings.DEBUG:
