@@ -1,5 +1,6 @@
 from django import forms
 from .models import Inquiry, Order
+from .models import ProjectMessage
 
 class InquiryForm(forms.ModelForm):
     class Meta:
@@ -34,3 +35,8 @@ class OrderForm(forms.ModelForm):
             'country': 'Country',
             'payment_method': 'Choose Payment Method',
         }
+
+class ProjectMessageForm(forms.ModelForm):
+    class Meta:
+        model = ProjectMessage
+        fields = ['name', 'email', 'message']        
