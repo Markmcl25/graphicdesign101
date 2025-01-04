@@ -28,10 +28,23 @@
             <p><strong>Tools Used:</strong> {{ project.tools }}</p>
             {% endif %}
 
+            <!-- Add to Cart Form -->
+            <h5>Add to Cart</h5>
+            <form method="POST" action="{% url 'add_to_cart' project.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" name="quantity" value="1" min="1" class="form-control w-25">
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-cart-plus"></i> Add to Cart
+                </button>
+            </form>
+
             <!-- Download link -->
             {% if project.file %}
-            <p>
-                <a href="{{ project.file.url }}" class="btn btn-success mt-3" download>
+            <p class="mt-3">
+                <a href="{{ project.file.url }}" class="btn btn-success" download>
                     <i class="fas fa-download"></i> Download Project File
                 </a>
             </p>

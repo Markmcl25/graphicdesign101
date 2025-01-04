@@ -50,6 +50,21 @@ def checkout(request):
 
     return render(request, 'home/checkout.html', {'form': form})
 
+def add_to_cart(request, project_id):
+    """ Add a project to the shopping cart """
+    project = get_object_or_404(PortfolioProject, id=project_id)
+    quantity = int(request.POST.get('quantity', 1))
+    bag = request.session.get('bag', {})
+
+    if str(project_id) in bag:
+        bag[str(project_id)] += quantity
+    else:
+        bag[str(project_id)] = quantity
+
+    request.session['bag'] = bag
+    messages.success(request, f'{project.title} has been added to your shopping bag!')
+    return redirect('project_detail', project_id=project_id)    
+
 
 def checkout_success(request):
     """ A view to display the checkout success page """

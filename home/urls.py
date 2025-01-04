@@ -15,6 +15,7 @@ urlpatterns = [
     path('submit-inquiry/', views.submit_inquiry, name='submit_inquiry'),
     path('checkout/', views.checkout, name='checkout'),
     path('checkout-success/', views.checkout_success, name='checkout_success'),
+    path('add-to-cart/<int:project_id>/', views.add_to_cart, name='add_to_cart'),
 ]
 
 if settings.DEBUG:
