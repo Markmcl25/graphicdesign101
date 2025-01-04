@@ -41,6 +41,24 @@
         </div>
     </div>
 
+    <hr class="my-5">
+
+    <!-- Contact Form Section -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h3>Contact Us About This Project</h3>
+            <p>If you have any questions or would like more information about this project, please fill out the form below:</p>
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary mt-2">
+                    <i class="fas fa-paper-plane"></i> Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+
     <!-- Optional Additional Section -->
     {% if project.related_projects %}
     <div class="mt-5">
@@ -49,7 +67,7 @@
             {% for related in project.related_projects %}
             <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card shadow-sm h-100">
-                    <img src="{% static related.image %}" class="card-img-top" alt="{{ related.title }}">
+                    <img src="{{ related.image.url }}" class="card-img-top" alt="{{ related.title }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ related.title }}</h5>
                         <p class="card-text">{{ related.description }}</p>
