@@ -15,7 +15,7 @@ body {
 }
 
 .alert-container {
-    margin-top: 100px; /* Adjust this value to match the height of your navbar */
+    margin-top: 1 rem; /* Adjust this value to match the height of your navbar */
     z-index: 1050; /* Ensure the messages stay above other content */
 }
 
