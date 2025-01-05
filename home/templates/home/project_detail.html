@@ -73,11 +73,11 @@
     </div>
 
     <!-- Optional Additional Section -->
-    {% if project.related_projects %}
+    {% if related_projects %}
     <div class="mt-5">
         <h3>Related Projects</h3>
         <div class="row">
-            {% for related in project.related_projects %}
+            {% for related in related_projects %}
             <div class="col-md-4 col-sm-6 mb-4">
                 <div class="card shadow-sm h-100">
                     <img src="{{ related.image.url }}" class="card-img-top" alt="{{ related.title }}">

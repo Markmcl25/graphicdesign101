@@ -1,5 +1,5 @@
 /* General Styles */
-html {
+html, body {
     height: 100%;
     margin: 0;
 }
@@ -11,7 +11,7 @@ html {
 }
 
 .content {
-    flex: 1; /* Pushes the footer to the bottom */
+    flex-grow: 1; /* Pushes the footer to the bottom */
 }
 
 .alert-container {
@@ -58,6 +58,14 @@ h1 {
 
 .content-wrapper {
     flex-grow: 1;  /* Pushes the footer down */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh; /* Full page height */
+}
+
+.main-content {
+    flex-grow: 1; /* Expands content to take up available space */
 }
 
 /* Icon Styling (Inspired by Bulma) */
@@ -149,7 +157,6 @@ h1 {
     margin-left: 10px;
 }
 
-
 /* Carousel */
 .carousel {
     max-height: 500px; /* Set a consistent max height for carousel */
@@ -192,6 +199,10 @@ h1 {
 
 footer {
     margin-top: auto;  /* Ensures footer stays at the bottom */
+    padding: 1rem 0;
+    text-align: center;
+    background-color: #343a40;
+    color: white;
 }
 
 /* -------------------------------- Media Queries */
