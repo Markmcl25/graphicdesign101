@@ -1,21 +1,54 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .models import PortfolioProject, Order, OrderItem
-from .forms import InquiryForm, OrderForm
-from .forms import ProjectMessageForm
+from .forms import InquiryForm, OrderForm, ProjectMessageForm
 from django.contrib import messages
-
 
 # View for the homepage and /home/
 def index(request):
     """ A view to return the homepage """
     return render(request, 'home/index.html')
 
-
 def shopping_bag(request):
-    """Render the shopping bag page."""
-    return render(request, 'home/shopping_bag.html')
+    """Render the shopping bag page with items and total price."""
+    bag = request.session.get('bag', {})  # Retrieve the session cart
+    bag_items = []  # List to hold item details
+    grand_total = 0  # Total cost of items in the cart
 
+    for item_id, quantity in bag.items():
+        product = get_object_or_404(PortfolioProject, id=item_id)  # Get the product
+        total_price = product.price * quantity  # Calculate total price for the product
+        grand_total += total_price  # Add to the grand total
+
+        # Append product details to bag_items list
+        bag_items.append({
+            'id': product.id,
+            'title': product.title,
+            'description': product.description,
+            'price': product.price,
+            'image': product.image,
+            'quantity': quantity,
+            'total_price': total_price,
+        })
+
+    # Pass bag items and grand total to the template
+    context = {
+        'bag_items': bag_items,
+        'grand_total': grand_total,
+    }
+
+    return render(request, 'home/shopping_bag.html', context)
+
+def remove_item(request, project_id):  # Moved out of the `shopping_bag` function
+    """Remove an item from the shopping bag."""
+    bag = request.session.get('bag', {})
+
+    if str(project_id) in bag:
+        del bag[str(project_id)]  # Remove the item
+        request.session['bag'] = bag  # Save the updated bag
+        messages.success(request, "Item removed from your shopping bag.")
+
+    return redirect('shopping_bag')
 
 def checkout(request):
     """ A view to handle the checkout process """
@@ -63,26 +96,22 @@ def add_to_cart(request, project_id):
 
     request.session['bag'] = bag
     messages.success(request, f'{project.title} has been added to your shopping bag!')
-    return redirect('project_detail', project_id=project_id)    
-
+    return redirect('project_detail', project_id=project_id)
 
 def checkout_success(request):
     """ A view to display the checkout success page """
     return render(request, 'home/checkout_success.html')
-
 
 # Redirect to login page
 def example_view(request):
     """ Redirects to the login page """
     return redirect(reverse('account_login'))
 
-
 # View for the portfolio page
 def portfolio(request):
     """ A view to display the portfolio page """
     portfolio_projects = PortfolioProject.objects.all()  # Fetch from the database
     return render(request, 'home/portfolio.html', {'portfolio_projects': portfolio_projects})
-
 
 # View for a specific project detail
 def project_detail(request, project_id):
@@ -98,7 +127,7 @@ def project_detail(request, project_id):
             return redirect('project_detail', project_id=project.id)
     else:
         form = ProjectMessageForm()
-    
+
     return render(request, 'home/project_detail.html', {'project': project, 'form': form})
 
 def submit_inquiry(request):

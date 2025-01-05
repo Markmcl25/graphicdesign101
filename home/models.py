@@ -16,6 +16,7 @@ class PortfolioProject(models.Model):
     date = models.DateField(blank=True, null=True)
     tools = models.CharField(max_length=200, blank=True, null=True)
     file = models.FileField(upload_to='portfolio_files/', blank=True, null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
 
     def __str__(self):
         return self.title

@@ -51,6 +51,11 @@ body {
     flex-direction: column;
 }
 
+.container {
+    margin-top: 20px; /* Top margin to keep a consistent gap */
+    flex-grow: 1;
+}
+
 .container p,
 h1 {
     margin-bottom: 20px;
@@ -62,11 +67,17 @@ h1 {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh; /* Full page height */
+    padding-top: 80px;
 }
 
 .main-content {
     flex-grow: 1; /* Expands content to take up available space */
 }
+
+form {
+    margin-bottom: 20px;
+}
+
 
 /* Icon Styling (Inspired by Bulma) */
 .icon {
