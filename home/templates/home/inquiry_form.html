@@ -2,12 +2,23 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1 class="mb-4">Submit an Inquiry</h1>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
-    </form>
+<div class="d-flex flex-column min-vh-100">
+    <div class="container flex-grow-1 mt-5">
+        <div class="card shadow p-4">
+            <h1 class="mb-4 text-center">Submit an Inquiry</h1>
+            <p class="text-center">We would love to hear from you! Fill out the form below:</p>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.as_p }}
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-paper-plane"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
