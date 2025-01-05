@@ -42,12 +42,10 @@ def shopping_bag(request):
 def remove_item(request, project_id):  # Moved out of the `shopping_bag` function
     """Remove an item from the shopping bag."""
     bag = request.session.get('bag', {})
-
     if str(project_id) in bag:
         del bag[str(project_id)]  # Remove the item
         request.session['bag'] = bag  # Save the updated bag
         messages.success(request, "Item removed from your shopping bag.")
-
     return redirect('shopping_bag')
 
 def checkout(request):
@@ -106,6 +104,17 @@ def checkout_success(request):
 def example_view(request):
     """ Redirects to the login page """
     return redirect(reverse('account_login'))
+
+def update_quantity(request, project_id):
+    """ Update the quantity of an item in the shopping bag. """
+    if request.method == "POST":
+        quantity = int(request.POST.get('quantity', 1))
+        bag = request.session.get('bag', {})
+        if str(project_id) in bag:
+            bag[str(project_id)] = quantity
+            messages.success(request, "Quantity updated successfully.")
+        request.session['bag'] = bag
+    return redirect('shopping_bag') 
 
 # View for the portfolio page
 def portfolio(request):
