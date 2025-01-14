@@ -51,7 +51,8 @@ class Order(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
     total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-
+    stripe_payment_intent = models.CharField(max_length=255, blank=True, null=True)  # Store Stripe payment intent ID
+    
     name = models.CharField(max_length=200)
     email = models.EmailField()
     phone = models.CharField(max_length=15, blank=True, null=True)
