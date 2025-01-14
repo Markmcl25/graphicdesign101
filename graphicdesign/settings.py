@@ -85,6 +85,10 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
+# Stripe Settings
+STRIPE_PUBLIC_KEY = 'pk_test_51QegEDB9k9qHixmuGxdaYMw5j5uwcloZQpMCzFWX9C6pBwxTTThMUsSDXK7P4ExSr9owho4oYh9KcBqi5DYzTMrh00kXJBMqhv'
+STRIPE_SECRET_KEY = 'sk_test_51QegEDB9k9qHixmuEkQ1rGbeA4kZnK4SHFD7lVhZGYc2HX5eDmKD36yPVGpxbabdZy80GClJHljx6USrvbuG08Oc00qFYpNRmM'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
