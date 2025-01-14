@@ -168,6 +168,10 @@ form {
     margin-left: 10px;
 }
 
+main {
+    padding-bottom: 2rem; /* Add spacing to prevent the footer from overlapping */
+}
+
 /* Carousel */
 .carousel {
     max-height: 500px; /* Set a consistent max height for carousel */
