@@ -6,7 +6,8 @@
         <div class="card shadow p-4">
             <h2 class="mb-4 text-center">Checkout</h2>
             <p class="text-center">Please fill in your details to complete the order.</p>
-            <form method="POST">
+
+            <form id="payment-form" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                     {{ form.name.label_tag }} {{ form.name }}
@@ -32,9 +33,19 @@
                 <div class="form-group">
                     {{ form.payment_method.label_tag }} {{ form.payment_method }}
                 </div>
+
+                <!-- Stripe Card Element -->
+                <div class="form-group">
+                    <label for="card-element">Credit or debit card</label>
+                    <div id="card-element" class="form-control">
+                        <!-- Stripe's card element will be inserted here -->
+                    </div>
+                    <div id="card-errors" role="alert" class="text-danger mt-2"></div>
+                </div>
+
                 <div class="text-center">
-                    <button type="submit" class="btn btn-success btn-lg">
-                        <i class="fas fa-credit-card"></i> Place Order
+                    <button id="submit-button" class="btn btn-success btn-lg">
+                        <i class="fas fa-credit-card"></i> Pay with Stripe
                     </button>
                     <a href="{% url 'shopping_bag' %}" class="btn btn-secondary btn-lg ml-2">
                         <i class="fas fa-arrow-left"></i> Back to Shopping Bag
@@ -44,4 +55,49 @@
         </div>
     </div>
 </div>
+
+<!-- Include Stripe JS -->
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe("{{ stripe_public_key }}");  // Use the public key from settings
+    var elements = stripe.elements();
+
+    // Create an instance of the card Element.
+    var card = elements.create('card', {
+        style: {
+            base: {
+                fontSize: '16px',
+                color: '#32325d',
+            }
+        }
+    });
+
+    // Add an instance of the card Element into the `card-element` div.
+    card.mount('#card-element');
+
+    // Handle form submission
+    var form = document.getElementById('payment-form');
+    var submitButton = document.getElementById('submit-button');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitButton.disabled = true;
+
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+                // Inform the user if there was an error
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+                submitButton.disabled = false;
+            } else {
+                // Add the token to the form and submit
+                var hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripe_token');
+                hiddenInput.setAttribute('value', result.token.id);
+                form.appendChild(hiddenInput);
+                form.submit();
+            }
+        });
+    });
+</script>
 {% endblock %}
