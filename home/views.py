@@ -48,38 +48,65 @@ def remove_item(request, project_id):  # Moved out of the `shopping_bag` functio
         messages.success(request, "Item removed from your shopping bag.")
     return redirect('shopping_bag')
 
+import stripe
+from django.conf import settings
+
 def checkout(request):
-    """ A view to handle the checkout process """
+    """ A view to handle the checkout process with Stripe integration """
+    stripe.api_key = settings.STRIPE_SECRET_KEY  # Set Stripe secret key
+
     if request.method == "POST":
         form = OrderForm(request.POST)
         if form.is_valid():
             order = form.save(commit=False)
             order.user = request.user if request.user.is_authenticated else None
-            order.save()
 
-            # Save order items
+            # Calculate total price based on shopping cart
             bag_items = request.session.get('bag', {})
-            total_price = 0
-            for item_id, quantity in bag_items.items():
-                product = PortfolioProject.objects.get(id=item_id)
-                total_price += product.price * quantity
-                OrderItem.objects.create(
-                    order=order,
-                    product=product,
-                    quantity=quantity,
-                    price=product.price
-                )
-            order.total_price = total_price
-            order.save()
+            total_price = sum(PortfolioProject.objects.get(id=item_id).price * quantity for item_id, quantity in bag_items.items())
 
-            # Clear the shopping bag
-            request.session['bag'] = {}
-            messages.success(request, "Your order has been placed successfully!")
-            return redirect('checkout_success')
+            # Create Stripe Payment Intent
+            try:
+                intent = stripe.PaymentIntent.create(
+                    amount=int(total_price * 100),  # Convert to cents
+                    currency='usd',
+                    payment_method_types=['card'],
+                    receipt_email=order.email,
+                )
+                
+                # Save Stripe payment intent and total price to order
+                order.total_price = total_price
+                order.stripe_payment_intent = intent['id']
+                order.save()
+
+                # Save order items
+                for item_id, quantity in bag_items.items():
+                    product = PortfolioProject.objects.get(id=item_id)
+                    OrderItem.objects.create(
+                        order=order,
+                        project=product,
+                        quantity=quantity,
+                        price=product.price
+                    )
+
+                # Clear the shopping bag after successful payment creation
+                request.session['bag'] = {}
+                messages.success(request, "Your order has been placed successfully!")
+                return redirect('checkout_success')
+
+            except stripe.error.StripeError as e:
+                messages.error(request, f"Error processing payment: {e.user_message}")
+        else:
+            messages.error(request, "Please correct the errors in the form.")
     else:
         form = OrderForm()
 
-    return render(request, 'home/checkout.html', {'form': form})
+    context = {
+        'form': form,
+        'stripe_public_key': settings.STRIPE_PUBLIC_KEY,
+    }
+
+    return render(request, 'home/checkout.html', context)
 
 def add_to_cart(request, project_id):
     """ Add a project to the shopping cart """
