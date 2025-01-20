@@ -10,7 +10,17 @@ class PortfolioProject(models.Model):
 
     title = models.CharField(max_length=200)
     description = models.TextField()
-    image = models.ImageField(upload_to='portfolio_images/')
+    image = models.ImageField(
+
+        upload_to='portfolio_images/',
+
+        default='portfolio_images/default-image.jpg',  # Provide a default image
+
+        blank=True,
+
+        null=True
+
+    )
     category = models.CharField(max_length=100, choices=CATEGORIES, blank=True, null=True)
     client = models.CharField(max_length=100, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
