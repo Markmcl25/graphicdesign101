@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PortfolioProject, Order, OrderItem, Inquiry
+from .models import PortfolioProject, Order, OrderItem, Inquiry, ProjectMessage
 
 @admin.register(PortfolioProject)
 class PortfolioProjectAdmin(admin.ModelAdmin):
@@ -24,3 +24,10 @@ class InquiryAdmin(admin.ModelAdmin):
     search_fields = ('name', 'email', 'subject')
     list_filter = ('created_at',)
     readonly_fields = ('name', 'email', 'subject', 'message', 'design_file', 'created_at')
+
+@admin.register(ProjectMessage)
+class ProjectMessageAdmin(admin.ModelAdmin):
+    list_display = ('project', 'name', 'email', 'created_at')
+    search_fields = ('name', 'email', 'message')
+    list_filter = ('created_at',)
+    readonly_fields = ('project', 'name', 'email', 'message', 'created_at')    
