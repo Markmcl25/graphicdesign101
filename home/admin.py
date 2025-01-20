@@ -36,3 +36,8 @@ class ProjectMessageAdmin(admin.ModelAdmin):
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'phone_number', 'city', 'country')
     search_fields = ('user__username', 'phone_number', 'city', 'country')
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
