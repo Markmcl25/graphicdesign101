@@ -1,6 +1,34 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class UserProfile(models.Model):
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    profile_image = models.ImageField(
+
+        upload_to='profile_images/', 
+
+        blank=True, 
+
+        null=True, 
+
+        default='profile_images/default-profile.jpg'
+
+    )
+
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+
+    address = models.TextField(blank=True, null=True)
+
+    city = models.CharField(max_length=100, blank=True, null=True)
+
+    country = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+
+        return self.user.username
+
 class PortfolioProject(models.Model):
     CATEGORIES = [
         ('logo', 'Logo Design'),
@@ -21,6 +49,7 @@ class PortfolioProject(models.Model):
         null=True
 
     )
+    
     category = models.CharField(max_length=100, choices=CATEGORIES, blank=True, null=True)
     client = models.CharField(max_length=100, blank=True, null=True)
     date = models.DateField(blank=True, null=True)
