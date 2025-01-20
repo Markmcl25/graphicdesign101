@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+import dj_database_url
 
 from pathlib import Path
 
@@ -110,10 +111,9 @@ CSRF_TRUSTED_ORIGINS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://neondb_owner:hik3eVqJ7RCA@ep-shy-voice-a203l6jm.eu-central-1.aws.neon.tech/fax_sax_range_822335'
+    )
 }
 
 # Password validation
