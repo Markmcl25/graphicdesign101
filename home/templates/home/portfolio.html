@@ -13,7 +13,15 @@
                 {% for project in portfolio_projects %}
                 <div class="col-md-4 col-sm-6 mb-4">
                     <div class="card shadow-sm h-100">
-                        <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+                        {% if project.image %}
+
+                            <img src="{{ project.image.url }}" class="card-img-top" alt="{{ project.title }}">
+
+                        {% else %}
+
+                            <img src="{% static 'portfolio_images/default-image.jpg' %}" class="card-img-top" alt="Default Image">
+
+                        {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ project.title }}</h5>
                             <p class="card-text">{{ project.description }}</p>
