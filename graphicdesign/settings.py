@@ -111,9 +111,7 @@ CSRF_TRUSTED_ORIGINS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://neondb_owner:hik3eVqJ7RCA@ep-shy-voice-a203l6jm.eu-central-1.aws.neon.tech/fax_sax_range_822335'
-    )
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
 
 # Password validation
