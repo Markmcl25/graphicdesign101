@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
 from .models import PortfolioProject, Order, OrderItem, Inquiry, ProjectMessage, UserProfile
 
 @admin.register(PortfolioProject)
@@ -30,13 +33,14 @@ class ProjectMessageAdmin(admin.ModelAdmin):
     list_display = ('project', 'name', 'email', 'created_at')
     search_fields = ('name', 'email', 'message')
     list_filter = ('created_at',)
-    readonly_fields = ('project', 'name', 'email', 'message', 'created_at')    
+    readonly_fields = ('project', 'name', 'email', 'message', 'created_at')
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'phone_number', 'city', 'country')
     search_fields = ('user__username', 'phone_number', 'city', 'country')
 
+# Automatically create UserProfile when a new user is created
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
