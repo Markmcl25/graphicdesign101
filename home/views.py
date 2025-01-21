@@ -178,3 +178,7 @@ def submit_inquiry(request):
         form = InquiryForm()
 
     return render(request, 'home/inquiry_form.html', {'form': form})
+
+def custom_404_view(request, exception):
+    """Custom 404 page view."""
+    return render(request, '404.html', status=404)    
