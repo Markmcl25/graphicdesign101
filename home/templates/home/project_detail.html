@@ -29,8 +29,9 @@
                 <p><strong>Tools Used:</strong> {{ project.tools }}</p>
                 {% endif %}
 
-                <!-- Add to Cart Form -->
-                <h5>Add to Cart</h5>
+               <!-- Add to Cart Form -->
+                <h5 class="mt-4">Purchase this Project</h5>
+                <p><strong>Price:</strong> {{ project.get_display_price }}</p>
                 <form method="POST" action="{% url 'add_to_cart' project.id %}">
                     {% csrf_token %}
                     <div class="form-group">
