@@ -1,7 +1,6 @@
 from django import forms
 from .models import Inquiry, Order, ProjectMessage
 
-
 class InquiryForm(forms.ModelForm):
     """Form for submitting inquiries about design services."""
 

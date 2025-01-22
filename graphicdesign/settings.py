@@ -167,3 +167,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Directory where media files are stored
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Change to your email provider
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'your-email@gmail.com'  # Replace with your email
+EMAIL_HOST_PASSWORD = 'your-email-password'  # Use environment variable for security
+DEFAULT_FROM_EMAIL = 'Graphic Design 101 <your-email@gmail.com>'
+
