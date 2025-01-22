@@ -74,13 +74,12 @@ class Inquiry(models.Model):
     email = models.EmailField()
     subject = models.CharField(max_length=255)
     message = models.TextField()
-    design_file = models.FileField(upload_to='inquiries/', blank=True, null=True)  # Add this field
     created_at = models.DateTimeField(auto_now_add=True)
-    reply = models.TextField(blank=True, null=True)
-    replied = models.BooleanField(default=False)
+    replied = models.BooleanField(default=False)  # Track if the inquiry is replied
+    reply_message = models.TextField(blank=True, null=True)  # Store admin's reply
 
     def __str__(self):
-        return f"Inquiry from {self.name} regarding {self.subject}"
+        return f"{self.subject} - {self.name}"
 
 
 class Order(models.Model):
