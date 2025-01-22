@@ -47,10 +47,24 @@ class InquiryAdmin(admin.ModelAdmin):
 
 @admin.register(ProjectMessage)
 class ProjectMessageAdmin(admin.ModelAdmin):
-    list_display = ('project', 'name', 'email', 'created_at')
+    list_display = ('project', 'name', 'email', 'created_at', 'replied')
     search_fields = ('name', 'email', 'message')
-    list_filter = ('created_at',)
+    list_filter = ('created_at', 'replied')
     readonly_fields = ('project', 'name', 'email', 'message', 'created_at')
+    fields = ('project', 'name', 'email', 'message', 'reply_message', 'replied', 'created_at')
+
+    # Overriding the save method to send reply email when reply_message is added
+    def save_model(self, request, obj, form, change):
+        if 'reply_message' in form.changed_data and obj.reply_message:
+            obj.replied = True  # Mark message as replied
+            send_mail(
+                subject=f"Response to your project inquiry regarding {obj.project.title}",
+                message=obj.reply_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[obj.email],
+                fail_silently=False,
+            )
+        super().save_model(request, obj, form, change)
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
