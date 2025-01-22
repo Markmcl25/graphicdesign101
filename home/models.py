@@ -70,16 +70,17 @@ class PortfolioProject(models.Model):
 
 
 class Inquiry(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=255)
     email = models.EmailField()
-    subject = models.CharField(max_length=200)
+    subject = models.CharField(max_length=255)
     message = models.TextField()
-    design_file = models.FileField(
-        upload_to='design_uploads/', blank=True, null=True)
+    project = models.ForeignKey('PortfolioProject', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+    reply = models.TextField(blank=True, null=True)  # Admin reply field
+    replied = models.BooleanField(default=False)  # Track if replied
 
     def __str__(self):
-        return f"Inquiry from {self.name} - {self.subject}"
+        return f"Inquiry from {self.name} regarding {self.project.title}"
 
 
 class Order(models.Model):
