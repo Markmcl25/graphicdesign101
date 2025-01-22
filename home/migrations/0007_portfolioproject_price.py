@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='portfolioproject',
             name='price',
-            field=models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
+            field=models.DecimalField(
+                decimal_places=2, default=0.0, max_digits=10),
         ),
     ]

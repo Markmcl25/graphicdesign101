@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='portfolioproject',
             name='category',
-            field=models.CharField(blank=True, choices=[('logo', 'Logo Design'), ('web', 'Web Design'), ('branding', 'Branding')], max_length=100, null=True),
+            field=models.CharField(blank=True, choices=[('logo', 'Logo Design'), (
+                'web', 'Web Design'), ('branding', 'Branding')], max_length=100, null=True),
         ),
     ]

@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='portfolioproject',
             name='file',
-            field=models.FileField(blank=True, null=True, upload_to='portfolio_files/'),
+            field=models.FileField(blank=True, null=True,
+                                   upload_to='portfolio_files/'),
         ),
     ]

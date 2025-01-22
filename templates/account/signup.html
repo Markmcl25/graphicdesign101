@@ -1,45 +1,40 @@
-{% extends "account/base.html" %}
+{% extends "base.html" %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Signup" %}
 {% endblock head_title %}
+
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Up" %}
-    {% endelement %}
-    {% setvar link %}
-        <a href="{{ login_url }}">
-        {% endsetvar %}
-        {% setvar end_link %}
-        </a>
-    {% endsetvar %}
-    {% element p %}
-        {% blocktranslate %}Already have an account? Then please {{ link }}sign in{{ end_link }}.{% endblocktranslate %}
-    {% endelement %}
-    {% if not SOCIALACCOUNT_ONLY %}
-        {% url 'account_signup' as action_url %}
-        {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-            {% slot body %}
-                {% csrf_token %}
-                {% element fields form=form unlabeled=True %}
-                {% endelement %}
-                {{ redirect_field }}
-            {% endslot %}
-            {% slot actions %}
-                {% element button tags="prominent,signup" type="submit" %}
-                    {% trans "Sign Up" %}
-                {% endelement %}
-            {% endslot %}
-        {% endelement %}
-    {% endif %}
-    {% if PASSKEY_SIGNUP_ENABLED %}
-        {% element hr %}
-        {% endelement %}
-        {% element button href=signup_by_passkey_url tags="prominent,signup,outline,primary" %}
-            {% trans "Sign up using a passkey" %}
-        {% endelement %}
-    {% endif %}
-    {% if SOCIALACCOUNT_ENABLED %}
-        {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+<div class="d-flex flex-column min-vh-100">
+  <div class="container flex-grow-1 mt-5">
+      <div class="card shadow p-4">
+          <h1 class="display-4 text-center">{% trans "Sign Up" %}</h1>
+          <p class="lead text-center">
+              {% blocktranslate %}Already have an account? Then please 
+              <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
+          </p>
+
+          <div class="text-center">
+              {% if not SOCIALACCOUNT_ONLY %}
+                  {% url 'account_signup' as action_url %}
+                  <form method="post" action="{{ action_url }}" class="mt-4">
+                      {% csrf_token %}
+
+                      <div class="form-group">
+                          {{ form.as_p }}
+                      </div>
+
+                      {{ redirect_field }}
+
+                      <div class="form-group text-center">
+                          <button type="submit" class="btn btn-primary btn-lg mx-2">
+                              <i class="fas fa-user-plus"></i> {% trans "Sign Up" %}
+                          </button>
+                      </div>
+                  </form>
+              {% endif %}
+          </div>
+      </div>
+  </div>
+</div>
 {% endblock content %}

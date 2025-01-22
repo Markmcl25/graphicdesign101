@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='portfolioproject',
             name='image',
-            field=models.ImageField(blank=True, default='portfolio_images/default-image.jpg', null=True, upload_to='portfolio_images/'),
+            field=models.ImageField(
+                blank=True, default='portfolio_images/default-image.jpg', null=True, upload_to='portfolio_images/'),
         ),
     ]

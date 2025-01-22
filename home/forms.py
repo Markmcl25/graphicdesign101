@@ -4,11 +4,11 @@ from .models import Inquiry, Order, ProjectMessage
 
 class InquiryForm(forms.ModelForm):
     """Form for submitting inquiries about design services."""
-    
+
     class Meta:
         model = Inquiry
         fields = ['name', 'email', 'subject', 'message', 'design_file']
-        
+
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Your Name', 'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Your Email', 'class': 'form-control'}),
@@ -21,7 +21,8 @@ class InquiryForm(forms.ModelForm):
 class OrderForm(forms.ModelForm):
     """Form for placing an order with Stripe integration."""
 
-    stripe_token = forms.CharField(widget=forms.HiddenInput())  # Add stripe token field for payments
+    # Add stripe token field for payments
+    stripe_token = forms.CharField(widget=forms.HiddenInput())
 
     class Meta:
         model = Order
@@ -29,7 +30,7 @@ class OrderForm(forms.ModelForm):
             'name', 'email', 'phone', 'address', 'city', 'postal_code',
             'country', 'payment_method', 'status'
         ]
-        
+
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Full Name', 'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Email Address', 'class': 'form-control'}),
@@ -41,7 +42,7 @@ class OrderForm(forms.ModelForm):
             'payment_method': forms.Select(attrs={'class': 'form-control'}),
             'status': forms.HiddenInput(),  # Keep status hidden, default to 'pending'
         }
-        
+
         labels = {
             'name': 'Full Name',
             'email': 'Email Address',
@@ -56,11 +57,11 @@ class OrderForm(forms.ModelForm):
 
 class ProjectMessageForm(forms.ModelForm):
     """Form for submitting messages related to a specific project."""
-    
+
     class Meta:
         model = ProjectMessage
         fields = ['name', 'email', 'message']
-        
+
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Your Name', 'class': 'form-control'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Your Email', 'class': 'form-control'}),

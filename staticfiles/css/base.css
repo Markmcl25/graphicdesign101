@@ -1,0 +1,254 @@
+/* General Styles */
+body {
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+}
+
+.content {
+    flex-grow: 1; /* Pushes the footer to the bottom */
+}
+
+.alert-container {
+    margin-top: 20px;
+    z-index: 1050; /* Ensure the messages stay above other content */
+}
+
+/* Welcome Section */
+.welcome-section {
+    margin-top: 4rem; /* Reduce margin for better spacing from navbar */
+    padding: 3rem; /* Increase padding inside the jumbotron */
+    text-align: left; /* Align text to the left */
+}
+
+.welcome-section h1,
+.welcome-section p {
+    margin-bottom: 1rem; /* Consistent margins for headings and paragraphs */
+}
+
+.welcome-section .btn-lg {
+    margin-top: 20px; /* Add margin to buttons for better spacing */
+}
+
+.portfolio-wrapper {
+    margin-top: 120px;  /* Adds space from navbar */
+}
+
+body {
+    background: url('{% static "images/pexels-cottonbro-5082573.jpg" %}') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    color: #555;
+    font-family: 'Lato', sans-serif; /* Add a fallback font */
+    margin: 0;
+    padding-top: 80px; /* Updated to match the navbar height */
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    margin-top: 20px; /* Top margin to keep a consistent gap */
+    flex-grow: 1;
+}
+
+.container p,
+h1 {
+    margin-bottom: 20px;
+}
+
+.content-wrapper {
+    flex-grow: 1;  /* Pushes the footer down */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh; /* Full page height */
+    padding-top: 80px;
+}
+
+.main-content {
+    flex-grow: 1; /* Expands content to take up available space */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+
+/* Icon Styling (Inspired by Bulma) */
+.icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+/* Logo and Branding */
+.logo-font {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.main-logo-link {
+    width: fit-content;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Buttons */
+.shop-now-button {
+    background: black;
+    color: white;
+    min-width: 260px;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-black {
+    background: black;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.shop-now-button:hover,
+.shop-now-button:active,
+.shop-now-button:focus,
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    background: #222;
+    color: white;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #343a40; /* Dark background for contrast */
+    padding: 1.5rem 1rem; /* Increased padding for taller navbar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a shadow for floating effect */
+    z-index: 1030; /* Ensure the navbar stays on top */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color 0.3s ease-in-out;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: white;
+}
+
+.shopping-bag-wrapper {
+    margin-top: 120px;  /* Spacing below the navbar */
+}
+
+.table img {
+    border-radius: 5px;
+}
+
+.table .btn-info {
+    margin-left: 10px;
+}
+
+main {
+    padding-bottom: 2rem; /* Add spacing to prevent the footer from overlapping */
+}
+
+/* Carousel */
+.carousel {
+    max-height: 500px; /* Set a consistent max height for carousel */
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.carousel-item img {
+    width: 100%;
+    max-height: 500px; /* Ensure images stay within max height */
+    object-fit: cover; /* Crop the image to fit the container */
+    object-position: center; /* Center the image */
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background for captions */
+    padding: 1rem; /* Add padding around the text */
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Jumbotron Styling */
+.jumbotron {
+    background: linear-gradient(to right, #007bff, #6c757d); /* Example gradient */
+    color: white;
+    padding: 3rem 2rem; /* Add padding for larger screens */
+}
+
+.jumbotron h1,
+.jumbotron p {
+    margin-bottom: 1.5rem; /* Increased margin for spacing */
+}
+
+.jumbotron .btn-lg {
+    margin-top: 1rem;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+footer {
+    margin-top: auto;  /* Ensures footer stays at the bottom */
+    padding: 1rem 0;
+    text-align: center;
+    background-color: #343a40;
+    color: white;
+}
+
+/* -------------------------------- Media Queries */
+
+/* Larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+/* Fixed top navbar for medium screens and up */
+@media (min-width: 992px) {
+    .header-container {
+        padding-top: 120px; /* Adds more padding for desktop navbar */
+    }
+}
+
+/* Small screen adjustments */
+@media (max-width: 768px) {
+    body {
+        padding-top: 64px; /* Slightly smaller padding for mobile */
+    }
+
+    .shop-now-button {
+        min-width: 200px;
+        padding: 0.5rem 1rem;
+    }
+
+    .jumbotron,
+    .carousel {
+        max-height: 350px; /* Smaller max height for mobile */
+    }
+}
