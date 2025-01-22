@@ -29,16 +29,16 @@ class InquiryAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'created_at', 'replied')
     search_fields = ('name', 'email', 'subject')
     list_filter = ('created_at', 'replied')
-    readonly_fields = ('name', 'email', 'subject', 'message', 'design_file', 'created_at')
-    fields = ('name', 'email', 'subject', 'message', 'design_file', 'created_at', 'reply', 'replied')
+    readonly_fields = ('name', 'email', 'subject', 'message', 'created_at')
+    fields = ('name', 'email', 'subject', 'message', 'reply_message', 'replied', 'created_at')
 
-    # Overriding the save method to send reply email when reply is added
+    # Overriding the save method to send reply email when reply_message is added
     def save_model(self, request, obj, form, change):
-        if 'reply' in form.changed_data and obj.reply:
+        if 'reply_message' in form.changed_data and obj.reply_message:
             obj.replied = True  # Mark inquiry as replied
             send_mail(
                 subject=f"Response to your inquiry about {obj.subject}",
-                message=obj.reply,
+                message=obj.reply_message,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[obj.email],
                 fail_silently=False,

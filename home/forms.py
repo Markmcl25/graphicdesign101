@@ -6,7 +6,7 @@ class InquiryForm(forms.ModelForm):
 
     class Meta:
         model = Inquiry
-        fields = ['name', 'email', 'subject', 'message', 'design_file']
+        fields = ['name', 'email', 'subject', 'message']
 
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Your Name', 'class': 'form-control'}),

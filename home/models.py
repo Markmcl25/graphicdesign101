@@ -155,6 +155,8 @@ class ProjectMessage(models.Model):
     email = models.EmailField()
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    replied = models.BooleanField(default=False)  # Track if the message is replied
+    reply_message = models.TextField(blank=True, null=True)  # Store admin's reply
 
     def __str__(self):
         return f"Message from {self.name} for {self.project.title}"
