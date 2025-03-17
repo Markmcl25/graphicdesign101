@@ -27,12 +27,14 @@ SECRET_KEY = 'django-insecure-=eolaj=qpijm=yb%k*m6f=)@!b^bwvne01^d-7df@e+eh4(%52
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-markmcl25-graphicdesign-q3yskwwnk72.ws-eu117.gitpod.io',
+ALLOWED_HOSTS = [
+    '8000-markmcl25-graphicdesign-q3yskwwnk72.ws-eu117.gitpod.io',
     'graphicdesign101-c7de417d0557.herokuapp.com',
     '8000-markmcl25-graphicdesign-93p47i7v7ox.ws-eu118.gitpod.io',
     '.gitpod.io',  # Allow all Gitpod subdomains
     'localhost', 
-    '127.0.0.1']
+    '127.0.0.1'
+    ]
 
 
 # Application definition

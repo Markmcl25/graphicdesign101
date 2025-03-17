@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from home.views import custom_404_view
+from home import views
 
 # Temporary home view function
 from django.http import HttpResponse

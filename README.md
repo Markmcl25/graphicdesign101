@@ -8,13 +8,13 @@ Here are some screenshots showcasing the functionality of **Graphic Design 101**
 ![Home Page](screenshots/gd1.jpg)
 
 ### Portfolio Section
-![Portfolio](screenshots/portfolio.png)
+![Portfolio](screenshots/gd2.jpg)
 
 ### Order Page
-![Order Page](screenshots/order-page.png)
+![Order Page](screenshots/gd3.jpg)
 
 ### Admin Panel
-![Admin Panel](screenshots/admin-panel.png)
+![Admin Panel](screenshots/gd4.jpg)
 
 Table of Contents
 -----------------
