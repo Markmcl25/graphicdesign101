@@ -1,6 +1,21 @@
 Graphic Design 101
 ==================
 
+## Screenshots & Previews
+Here are some screenshots showcasing the functionality of **Graphic Design 101**:
+
+### Home Page
+![Home Page](screenshots/gd1.jpg)
+
+### Portfolio Section
+![Portfolio](screenshots/portfolio.png)
+
+### Order Page
+![Order Page](screenshots/order-page.png)
+
+### Admin Panel
+![Admin Panel](screenshots/admin-panel.png)
+
 Table of Contents
 -----------------
 
