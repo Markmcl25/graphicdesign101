@@ -1,6 +1,10 @@
 Graphic Design 101
 ==================
 
+Graphic Design 101 is committed to providing high-quality, custom graphic design services that empower individuals and businesses to bring their creative visions to life. Our mission is to make professional design accessible, efficient, and tailored to each client’s unique needs.
+
+Through an intuitive platform, seamless ordering process, and expert craftsmanship, we strive to bridge the gap between creativity and functionality—ensuring every project is a masterpiece. Whether it’s branding, marketing materials, or digital assets, Graphic Design 101 is your go-to destination for exceptional design solutions.
+
 ## Screenshots & Previews
 Here are some screenshots showcasing the functionality of **Graphic Design 101**:
 
